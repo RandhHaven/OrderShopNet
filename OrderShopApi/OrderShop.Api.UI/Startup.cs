@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-namespace OrderShop.Api.UI
+﻿namespace OrderShop.Api.UI
 {
     public class Startup
     {
@@ -46,7 +39,7 @@ namespace OrderShop.Api.UI
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Core API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Core Order Shop API");
                 c.RoutePrefix = string.Empty;
             });
 
@@ -56,7 +49,9 @@ namespace OrderShop.Api.UI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{area=OrderShop}/{controller=OrderShopUI}/{action=Get}/{id?}");
             });
         }
     }
