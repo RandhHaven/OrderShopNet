@@ -5,9 +5,9 @@ namespace OrderShopNet.Api.Core.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<OrderShop> TodoLists { get; }
+    DbSet<OrderShop> OrderShop { get; }
 
-    DbSet<OrderShopDetail> TodoItems { get; }
+    DbSet<ProductDetail> ProductDetail { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

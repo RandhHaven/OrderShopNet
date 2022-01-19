@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OrderShopNet.Api.Core.Common.Interfaces;
 
 namespace OrderShopNet.Api.Infrastructure.Services
 {
-    internal class DateTimeService
+    public class DateTimeService : IDateTime
     {
+        public DateTime Now => DateTime.Now;
     }
 }
