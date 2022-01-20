@@ -1,15 +1,17 @@
 ﻿using OrderShopNet.Api.Domain.Common;
+namespace OrderShopNet.Api.Domain.Entities;
 
-namespace OrderShopNet.Api.Domain.Entities
+using System.ComponentModel.DataAnnotations;
+
+public sealed class OrderShop : AuditableEntity
 {
-    public sealed class OrderShop : AuditableEntity
-    {
-        public int OrderShopId { get; set; }
+    [Required]
+    [Key]
+    public Int64 OrderShopId { get; set; }
 
-        public String? Title { get; set; }
+    public String? Title { get; set; }
 
-        public String? NumberOrder { get; set; }
+    public String? NumberOrder { get; set; }
 
-        public IList<ProductDetail> Items { get; private set; } = new List<ProductDetail>();
-    }
+    public IList<ProductDetail> Items { get; private set; } = new List<ProductDetail>();
 }

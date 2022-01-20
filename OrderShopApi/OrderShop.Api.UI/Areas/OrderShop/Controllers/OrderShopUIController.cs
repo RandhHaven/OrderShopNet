@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderShopApi;
 
-namespace OrderShop.Api.UI.Areas.OrderShop.Controller;
+namespace OrderShop.Api.UI.Areas.OrderShop.Controllers;
 
 [ApiController]
 [Area("OrderShop")]

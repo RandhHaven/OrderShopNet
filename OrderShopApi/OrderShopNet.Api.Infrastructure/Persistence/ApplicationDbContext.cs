@@ -7,6 +7,7 @@ using OrderShopNet.Api.Domain.Common;
 using OrderShopNet.Api.Domain.Entities;
 using OrderShopNet.Api.Infrastructure.Identity;
 using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace OrderShopNet.Api.Infrastructure.Persistence;
 
@@ -66,7 +67,10 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
+        builder.Entity<OrderShop>().HasKey(x => x.OrderShopId);
+        builder.Entity<OrderShop>().ToTable("OrderShop");
+        builder.Entity<ProductDetail>().HasKey(x => x.ProductId);
+        builder.Entity<ProductDetail>().ToTable("ProductDetail");
         base.OnModelCreating(builder);
     }
 
@@ -76,6 +80,19 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
         {
             @event.IsPublished = true;
             await _domainEventService.Publish(@event);
+        }
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        IConfigurationRoot configuration = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+        //En caso de que el contexto no este configurado, lo configuramos mediante la cadena de conexion
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("AppConnection"));
         }
     }
 }

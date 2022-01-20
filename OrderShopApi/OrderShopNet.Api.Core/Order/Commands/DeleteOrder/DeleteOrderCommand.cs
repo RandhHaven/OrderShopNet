@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderShopNet.Api.Infrastructure.Data
+namespace OrderShopNet.Api.Core.Order.Commands.DeleteOrder
 {
-    internal class OrderShopDetail
+    internal class DeleteOrderCommand
     {
     }
 }

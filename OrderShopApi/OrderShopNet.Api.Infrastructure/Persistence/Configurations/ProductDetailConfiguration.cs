@@ -11,8 +11,14 @@ internal class ProductDetailConfiguration : IEntityTypeConfiguration<ProductDeta
         builder.Ignore(e => e.DomainEvents);
         builder.Property(t => t.ProductId)
            .IsRequired();
-        builder.Property(t => t.Title)
+        builder.Property(t => t.NameProduct)
             .HasMaxLength(200)
             .IsRequired();
+        builder.Property(t => t.Description)
+           .HasMaxLength(200)
+           .IsRequired();
+        builder.Property(t => t.Quantity)
+           .HasMaxLength(10)
+           .IsRequired();
     }
 }

@@ -19,7 +19,8 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
-    <Folder Include="OrderShop\" />
+    <Folder Include="ProductDetail\Commands\" />
+    <Folder Include="ProductDetail\Queries\" />
   </ItemGroup>
 
 </Project>
