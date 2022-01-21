@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderShop.Api.UI.Filter;
 using OrderShop.Api.UI.Services;
-using OrderShopNet.Api.Core;
-using OrderShopNet.Api.Core.Common.Interfaces;
+using OrderShopNet.Api.Application;
+using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Infrastructure;
 using OrderShopNet.Api.Infrastructure.Persistence;
 

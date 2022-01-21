@@ -1,4 +1,4 @@
-﻿using OrderShopNet.Api.Core.Common.Interfaces;
+﻿using OrderShopNet.Api.Application.Common.Interfaces;
 
 namespace OrderShopNet.Api.Infrastructure.Services
 {

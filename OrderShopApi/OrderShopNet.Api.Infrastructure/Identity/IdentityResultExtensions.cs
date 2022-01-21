@@ -1,7 +1,7 @@
 ﻿namespace OrderShopNet.Api.Infrastructure.Identity;
 
 using Microsoft.AspNetCore.Identity;
-using OrderShopNet.Api.Core.Common.Models;
+using OrderShopNet.Api.Application.Common.Models;
 using System.Linq;
 
 public static class IdentityResultExtensions

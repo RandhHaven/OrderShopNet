@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using OrderShopNet.Api.Core.Common.Interfaces;
+using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Domain.Common;
 using OrderShopNet.Api.Domain.Entities;
 using OrderShopNet.Api.Infrastructure.Identity;
@@ -62,6 +62,16 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
         await DispatchEvents(events);
 
         return result;
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+    }
+
+    public override int SaveChanges()
+    {
+        return base.SaveChanges();
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

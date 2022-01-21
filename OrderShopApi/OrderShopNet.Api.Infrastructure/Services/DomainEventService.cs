@@ -2,8 +2,8 @@
 
 using MediatR;
 using Microsoft.Extensions.Logging;
-using OrderShopNet.Api.Core.Common.Interfaces;
-using OrderShopNet.Api.Core.Models;
+using OrderShopNet.Api.Application.Common.Interfaces;
+using OrderShopNet.Api.Application.Models;
 using OrderShopNet.Api.Domain.Common;
 
 public class DomainEventService : IDomainEventService

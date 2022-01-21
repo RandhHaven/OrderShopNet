@@ -21,7 +21,7 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\OrderShopNet.Api.Core\OrderShopNet.Api.Core.csproj" />
+	  <ProjectReference Include="..\OrderShopNet.Api.Application\OrderShopNet.Api.Application.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using OrderShopNet.Api.Core.Common.Interfaces;
-using OrderShopNet.Api.Core.Common.Models;
+using OrderShopNet.Api.Application.Common.Interfaces;
+using OrderShopNet.Api.Application.Common.Models;
 
 namespace OrderShopNet.Api.Infrastructure.Identity
 {

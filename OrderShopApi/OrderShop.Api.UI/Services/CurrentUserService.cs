@@ -1,6 +1,6 @@
 ﻿namespace OrderShop.Api.UI.Services;
 
-using OrderShopNet.Api.Core.Common.Interfaces;
+using OrderShopNet.Api.Application.Common.Interfaces;
 using System.Security.Claims;
 
 public class CurrentUserService : ICurrentUserService

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using OrderShopNet.Api.Core.Common.Interfaces;
+using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Infrastructure.Identity;
 using OrderShopNet.Api.Infrastructure.Persistence;
 using OrderShopNet.Api.Infrastructure.Services;

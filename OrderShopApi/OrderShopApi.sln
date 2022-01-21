@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShop.Api.UI", "OrderSh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShopNet.Api.Infrastructure", "OrderShopNet.Api.Infrastructure\OrderShopNet.Api.Infrastructure.csproj", "{AA13B351-899A-4F65-8C01-D365AEED7411}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShopNet.Api.Core", "OrderShopNet.Api.Core\OrderShopNet.Api.Core.csproj", "{193672AD-CDD6-4DEE-A7A7-1A969240B4BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShopNet.Api.Domain", "OrderShopNet.Api.Domain\OrderShopNet.Api.Domain.csproj", "{EB13D80F-70EE-4FA3-933A-1674971FB51C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderShopNet.Api.Domain", "OrderShopNet.Api.Domain\OrderShopNet.Api.Domain.csproj", "{EB13D80F-70EE-4FA3-933A-1674971FB51C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShopNet.Api.Application", "OrderShopNet.Api.Application\OrderShopNet.Api.Application.csproj", "{6B00BB1B-0BB3-4CBD-A3B8-EA3749023111}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{AA13B351-899A-4F65-8C01-D365AEED7411}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA13B351-899A-4F65-8C01-D365AEED7411}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA13B351-899A-4F65-8C01-D365AEED7411}.Release|Any CPU.Build.0 = Release|Any CPU
-		{193672AD-CDD6-4DEE-A7A7-1A969240B4BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{193672AD-CDD6-4DEE-A7A7-1A969240B4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{193672AD-CDD6-4DEE-A7A7-1A969240B4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{193672AD-CDD6-4DEE-A7A7-1A969240B4BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB13D80F-70EE-4FA3-933A-1674971FB51C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB13D80F-70EE-4FA3-933A-1674971FB51C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB13D80F-70EE-4FA3-933A-1674971FB51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB13D80F-70EE-4FA3-933A-1674971FB51C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B00BB1B-0BB3-4CBD-A3B8-EA3749023111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B00BB1B-0BB3-4CBD-A3B8-EA3749023111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B00BB1B-0BB3-4CBD-A3B8-EA3749023111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B00BB1B-0BB3-4CBD-A3B8-EA3749023111}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
