@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrderShopNet.Api.Core.Product.Commands.CreateProduct
+﻿namespace OrderShopNet.Api.Core.Product.Commands.CreateProduct
 {
-    internal class CreateProductCommand
+    using MediatR;
+    using System;
+
+    internal class CreateProductCommand : IRequest
     {
+        public String? NameProduct { get; set; }
+        public Int32 ListId { get; set; }
+        public String? Description { get; set; }
+        public Int32? Quantity { get; set; }
     }
 }

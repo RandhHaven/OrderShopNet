@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrderShopNet.Api.Application.Order.Commands.CreateOrder
+﻿namespace OrderShopNet.Api.Application.Order.Commands.CreateOrder
 {
-    internal class CreateOrderCommandValidator
+    using FluentValidation;
+
+    internal class CreateOrderCommandValidator : AbstractValidator<CreateOrderCommand>
     {
+        public CreateOrderCommandValidator()
+        {
+            RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.NumberOrder)
+                .NotEmpty()
+                .MaximumLength(100);
+        }
     }
 }

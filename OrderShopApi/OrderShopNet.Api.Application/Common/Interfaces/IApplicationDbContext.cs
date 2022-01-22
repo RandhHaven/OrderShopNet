@@ -5,9 +5,9 @@ using OrderShopNet.Api.Domain.Entities;
 
 public interface IApplicationDbContext
 {
-    DbSet<OrderShop> OrderShop { get; }
+    DbSet<OrderShop> OrderShops { get; }
 
-    DbSet<ProductDetail> ProductDetail { get; }
+    DbSet<ProductDetail> Products { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 

@@ -1,4 +1,4 @@
-﻿namespace OrderShop.Api.UI.Services;
+﻿namespace OrderShopNet.Api.UI.Services;
 
 using OrderShopNet.Api.Application.Common.Interfaces;
 using System.Security.Claims;

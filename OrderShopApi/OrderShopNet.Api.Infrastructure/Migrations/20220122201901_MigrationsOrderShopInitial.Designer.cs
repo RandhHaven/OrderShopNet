@@ -12,7 +12,7 @@ using OrderShopNet.Api.Infrastructure.Persistence;
 namespace OrderShopNet.Api.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220120231032_MigrationsOrderShopInitial")]
+    [Migration("20220122201901_MigrationsOrderShopInitial")]
     partial class MigrationsOrderShopInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -304,11 +304,9 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
 
             modelBuilder.Entity("OrderShopNet.Api.Domain.Entities.OrderShop", b =>
                 {
-                    b.Property<long>("OrderShopId")
+                    b.Property<Guid?>("OrderShopId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("OrderShopId"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -325,12 +323,15 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
                     b.Property<string>("NumberOrder")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProductOrderGuid")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderShopId");
 
-                    b.ToTable("OrderShop", (string)null);
+                    b.ToTable("OrderShops", (string)null);
                 });
 
             modelBuilder.Entity("OrderShopNet.Api.Domain.Entities.ProductDetail", b =>
@@ -356,16 +357,13 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ListId")
-                        .HasColumnType("int");
-
                     b.Property<string>("NameProduct")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<long?>("OrderShopId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("OrderShopId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Quantity")
                         .IsRequired()
@@ -376,7 +374,7 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
 
                     b.HasIndex("OrderShopId");
 
-                    b.ToTable("ProductDetail", (string)null);
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("OrderShopNet.Api.Infrastructure.Identity.ApplicationUser", b =>
@@ -497,9 +495,11 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
 
             modelBuilder.Entity("OrderShopNet.Api.Domain.Entities.ProductDetail", b =>
                 {
-                    b.HasOne("OrderShopNet.Api.Domain.Entities.OrderShop", null)
+                    b.HasOne("OrderShopNet.Api.Domain.Entities.OrderShop", "OrderShop")
                         .WithMany("Items")
                         .HasForeignKey("OrderShopId");
+
+                    b.Navigation("OrderShop");
                 });
 
             modelBuilder.Entity("OrderShopNet.Api.Domain.Entities.OrderShop", b =>

@@ -1,7 +1,7 @@
 ﻿using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
-using OrderShop.Api.UI.Filter;
-using OrderShop.Api.UI.Services;
+using OrderShopNet.Api.UI.Filter;
+using OrderShopNet.Api.UI.Services;
 using OrderShopNet.Api.Application;
 using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Infrastructure;

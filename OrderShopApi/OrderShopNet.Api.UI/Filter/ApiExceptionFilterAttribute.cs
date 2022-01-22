@@ -1,4 +1,4 @@
-﻿namespace OrderShop.Api.UI.Filter;
+﻿namespace OrderShopNet.Api.UI.Filter;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;

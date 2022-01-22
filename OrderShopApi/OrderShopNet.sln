@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShop.Api.UI", "OrderShop.Api.UI\OrderShop.Api.UI.csproj", "{E24F5D24-A8A3-4647-9A59-A0324B7CBA3A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShopNet.Api.Infrastructure", "OrderShopNet.Api.Infrastructure\OrderShopNet.Api.Infrastructure.csproj", "{AA13B351-899A-4F65-8C01-D365AEED7411}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShopNet.Api.Domain", "OrderShopNet.Api.Domain\OrderShopNet.Api.Domain.csproj", "{EB13D80F-70EE-4FA3-933A-1674971FB51C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShopNet.Api.Application", "OrderShopNet.Api.Application\OrderShopNet.Api.Application.csproj", "{6B00BB1B-0BB3-4CBD-A3B8-EA3749023111}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderShopNet.Api.UI", "OrderShopNet.Api.UI\OrderShopNet.Api.UI.csproj", "{45A53B2F-4326-49E1-9FDA-92C96204AC63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E24F5D24-A8A3-4647-9A59-A0324B7CBA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E24F5D24-A8A3-4647-9A59-A0324B7CBA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E24F5D24-A8A3-4647-9A59-A0324B7CBA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E24F5D24-A8A3-4647-9A59-A0324B7CBA3A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA13B351-899A-4F65-8C01-D365AEED7411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA13B351-899A-4F65-8C01-D365AEED7411}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA13B351-899A-4F65-8C01-D365AEED7411}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{6B00BB1B-0BB3-4CBD-A3B8-EA3749023111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B00BB1B-0BB3-4CBD-A3B8-EA3749023111}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B00BB1B-0BB3-4CBD-A3B8-EA3749023111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45A53B2F-4326-49E1-9FDA-92C96204AC63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45A53B2F-4326-49E1-9FDA-92C96204AC63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45A53B2F-4326-49E1-9FDA-92C96204AC63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A53B2F-4326-49E1-9FDA-92C96204AC63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

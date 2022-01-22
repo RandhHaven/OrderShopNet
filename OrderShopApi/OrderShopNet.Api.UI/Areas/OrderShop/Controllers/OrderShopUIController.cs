@@ -1,8 +1,7 @@
-﻿using AuthVec.WebUI.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using OrderShopApi;
+﻿namespace OrderShopNet.Api.UI.Areas.OrderShop.Controllers;
 
-namespace OrderShop.Api.UI.Areas.OrderShop.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using OrderShopNet.Api.UI.SharedController;
 
 [ApiController]
 [Area("OrderShop")]

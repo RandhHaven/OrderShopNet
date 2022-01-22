@@ -1,0 +1,13 @@
+De la base a la 
+ Scaffold-DBContext "data source=.\DESA;Database=ContactsDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data
+ 
+ dotnet ef migrations add MigrationsOrderShopInitial --project OrderShopNet.Api.Infrastructure
+ 
+ dotnet ef database update --project OrderShopNet.Api.Infrastructure
+ 
+
+
+add-migration MigrationsOrderShopInitial
+update-database
+
+Remove-Migration

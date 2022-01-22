@@ -29,9 +29,9 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
         _dateTime = dateTime;
     }
 
-    public DbSet<OrderShop> OrderShop => Set<OrderShop>();
+    public DbSet<OrderShop> OrderShops => Set<OrderShop>();
 
-    public DbSet<ProductDetail> ProductDetail => Set<ProductDetail>();
+    public DbSet<ProductDetail> Products => Set<ProductDetail>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
@@ -78,9 +78,9 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         builder.Entity<OrderShop>().HasKey(x => x.OrderShopId);
-        builder.Entity<OrderShop>().ToTable("OrderShop");
+        builder.Entity<OrderShop>().ToTable("OrderShops");
         builder.Entity<ProductDetail>().HasKey(x => x.ProductId);
-        builder.Entity<ProductDetail>().ToTable("ProductDetail");
+        builder.Entity<ProductDetail>().ToTable("Products");
         base.OnModelCreating(builder);
     }
 

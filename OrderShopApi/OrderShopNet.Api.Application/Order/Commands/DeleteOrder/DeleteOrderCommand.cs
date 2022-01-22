@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
-namespace OrderShopNet.Api.Core.Order.Commands.DeleteOrder
+namespace OrderShopNet.Api.Core.Order.Commands.DeleteOrder;
+
+internal class DeleteOrderCommand : IRequest<Guid>
 {
-    internal class DeleteOrderCommand
+    public Int64 OrderShopId { get; set; }
+}
+
+internal class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand, Guid>
+{
+    public Task<Guid> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
+        throw new NotImplementedException();
     }
 }

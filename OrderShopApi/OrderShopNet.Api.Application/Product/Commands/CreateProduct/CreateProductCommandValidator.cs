@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderShopNet.Api.Core.Order.Commands.DeleteOrder
+namespace OrderShopNet.Api.Application.Product.Commands.CreateProduct
 {
-    internal class DeleteOrderCommandValidator
+    internal class CreateProductCommandValidator
     {
     }
 }

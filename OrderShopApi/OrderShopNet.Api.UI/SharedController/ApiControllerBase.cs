@@ -1,8 +1,7 @@
-﻿using MediatR;
+﻿namespace OrderShopNet.Api.UI.SharedController;
 
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
-namespace AuthVec.WebUI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -86,13 +86,13 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderShop",
+                name: "OrderShops",
                 columns: table => new
                 {
-                    OrderShopId = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderShopId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumberOrder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductOrderGuid = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -100,7 +100,7 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderShop", x => x.OrderShopId);
+                    table.PrimaryKey("PK_OrderShops", x => x.OrderShopId);
                 });
 
             migrationBuilder.CreateTable(
@@ -230,15 +230,14 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductDetail",
+                name: "Products",
                 columns: table => new
                 {
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NameProduct = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    ListId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Quantity = table.Column<int>(type: "int", maxLength: 10, nullable: false),
-                    OrderShopId = table.Column<long>(type: "bigint", nullable: true),
+                    OrderShopId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -246,11 +245,11 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductDetail", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_ProductDetail_OrderShop_OrderShopId",
+                        name: "FK_Products_OrderShops_OrderShopId",
                         column: x => x.OrderShopId,
-                        principalTable: "OrderShop",
+                        principalTable: "OrderShops",
                         principalColumn: "OrderShopId");
                 });
 
@@ -330,8 +329,8 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
                 columns: new[] { "SubjectId", "SessionId", "Type" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductDetail_OrderShopId",
-                table: "ProductDetail",
+                name: "IX_Products_OrderShopId",
+                table: "Products",
                 column: "OrderShopId");
         }
 
@@ -362,7 +361,7 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
-                name: "ProductDetail");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -371,7 +370,7 @@ namespace OrderShopNet.Api.Infrastructure.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "OrderShop");
+                name: "OrderShops");
         }
     }
 }
