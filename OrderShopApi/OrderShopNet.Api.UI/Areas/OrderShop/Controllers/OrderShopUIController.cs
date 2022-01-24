@@ -1,6 +1,7 @@
 ﻿namespace OrderShopNet.Api.UI.Areas.OrderShop.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
+using OrderShopNet.Api.Core.Order.Commands.UpdateOrder;
 using OrderShopNet.Api.UI.SharedController;
 
 [ApiController]
@@ -26,5 +27,18 @@ public class OrderShopUIController : ApiControllerBase
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
         .ToArray();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult> Update(Guid id, UpdateOrderCommand command)
+    {
+        if (id != command.OrderShopId)
+        {
+            return BadRequest();
+        }
+
+        await Mediator.Send(command);
+
+        return NoContent();
     }
 }

@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace OrderShopNet.Api.Domain.EntitiesDto;
 
-namespace OrderShopNet.Api.Domain.EntitiesDTO
+public sealed class OrderShopDto
 {
-    internal class OrderShopDTO
-    { 
-        public Guid? OrderShopId { get; set; }
+    public Guid? OrderShopId { get; set; }
 
-        public String? Title { get; set; }
+    public String? Title { get; set; }
 
-        public String? NumberOrder { get; set; }
+    public String? NumberOrder { get; set; }
 
-        public String? ProductOrderGuid { get; set; }
-    }
+    public IList<ProductDetailDto> Items { get; set; }
 }

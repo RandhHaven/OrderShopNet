@@ -1,8 +1,8 @@
-﻿namespace OrderShopNet.Api.Domain.EntitiesDTO;
+﻿namespace OrderShopNet.Api.Domain.EntitiesDto;
 
 using OrderShopNet.Api.Domain.Entities;
 
-internal class ProductDetailDto
+public sealed class ProductDetailDto
 {
     public Guid? ProductId { get; set; }
     public String? NameProduct { get; set; }

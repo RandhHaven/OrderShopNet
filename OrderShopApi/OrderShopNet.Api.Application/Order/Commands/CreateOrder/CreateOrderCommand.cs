@@ -16,11 +16,11 @@ public class CreateOrderCommand : IRequest<Guid?>
 
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Guid?>
 {
-    private readonly IApplicationDbContext _context;
+    private readonly IApplicationDbContext context;
 
-    public CreateOrderCommandHandler(IApplicationDbContext context)
+    public CreateOrderCommandHandler(IApplicationDbContext _context)
     {
-        _context = context;
+        this.context = _context ?? throw new ArgumentNullException(nameof(_context));
     }
 
     public async Task<Guid?> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
@@ -29,9 +29,9 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Gui
 
         entity.Title = request.Title;
 
-        _context.OrderShops.Add(entity);
+        this.context.OrderShops.Add(entity);
 
-        await _context.SaveChangesAsync(cancellationToken);
+        await this.context.SaveChangesAsync(cancellationToken);
 
         return entity.OrderShopId;
     }

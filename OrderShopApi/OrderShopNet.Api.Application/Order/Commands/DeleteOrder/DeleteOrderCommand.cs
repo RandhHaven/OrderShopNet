@@ -1,16 +1,40 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using OrderShopNet.Api.Application.Common.Exceptions;
+using OrderShopNet.Api.Application.Common.Interfaces;
+using OrderShopNet.Api.Domain.Entities;
 
 namespace OrderShopNet.Api.Core.Order.Commands.DeleteOrder;
 
-internal class DeleteOrderCommand : IRequest<Guid>
+internal class DeleteOrderCommand : IRequest
 {
-    public Int64 OrderShopId { get; set; }
+    public Guid OrderShopId { get; set; }
 }
 
-internal class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand, Guid>
+internal class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
 {
-    public Task<Guid> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
+    private readonly IApplicationDbContext context;
+
+    public DeleteOrderCommandHandler(IApplicationDbContext _context)
     {
-        throw new NotImplementedException();
+        this.context = _context ?? throw new ArgumentNullException(nameof(_context));
+    }
+
+    public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
+    {
+        var entityDelete = await this.context.OrderShops
+            .Where(x => x.OrderShopId == request.OrderShopId)
+            .SingleOrDefaultAsync(cancellationToken);
+        
+        if (Object.Equals(entityDelete, null))
+        {
+            throw new NotFoundException($"Error Delete Order {nameof(OrderShop) } - {request.OrderShopId}");
+        }
+
+        this.context.OrderShops.Remove(entityDelete);
+
+        await this.context.SaveChangesAsync(cancellationToken);
+
+        return Unit.Value;
     }
 }
