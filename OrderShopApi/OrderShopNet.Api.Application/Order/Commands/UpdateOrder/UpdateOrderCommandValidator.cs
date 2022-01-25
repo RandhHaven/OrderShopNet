@@ -11,7 +11,8 @@ namespace OrderShopNet.Api.Core.Order.Commands.UpdateOrder
     {
         public UpdateOrderCommandValidator()
         {
-            RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.Title)
+                .NotEmpty();
             RuleFor(x => x.NumberOrder)
                 .NotEmpty()
                 .MaximumLength(100);

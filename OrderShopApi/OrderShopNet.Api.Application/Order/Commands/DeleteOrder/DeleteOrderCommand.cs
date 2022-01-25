@@ -6,12 +6,12 @@ using OrderShopNet.Api.Domain.Entities;
 
 namespace OrderShopNet.Api.Core.Order.Commands.DeleteOrder;
 
-internal class DeleteOrderCommand : IRequest
+public class DeleteOrderCommand : IRequest
 {
     public Guid OrderShopId { get; set; }
 }
 
-internal class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
+public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
 {
     private readonly IApplicationDbContext context;
 

@@ -16,6 +16,8 @@ public sealed class ProductDetail : AuditableEntity, IHasDomainEvent
     public Int32? Quantity { get; set; }
 
     public Guid? OrderShopId { get; set; }
+        
     public OrderShop? OrderShop { get; set; }
+    
     public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
 }

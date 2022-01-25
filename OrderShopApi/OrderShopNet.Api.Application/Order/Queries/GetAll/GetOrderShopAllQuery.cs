@@ -3,15 +3,15 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using OrderShopNet.Api.Application.Common.Interfaces;
-using OrderShopNet.Api.Domain.EntitiesDto;
+using OrderShopNet.Api.Application.EntitiesDto;
 
 namespace OrderShopNet.Api.Application.Order.Queries.GetAll
 {
-    internal sealed class GetOrderShopAllQuery : IRequest<GetAllVm>
+    public sealed class GetOrderShopAllQuery : IRequest<GetAllVm>
     {
     }
 
-    internal sealed class GetOrderShopAllQueryHandler : IRequestHandler<GetOrderShopAllQuery, GetAllVm>
+    public sealed class GetOrderShopAllQueryHandler : IRequestHandler<GetOrderShopAllQuery, GetAllVm>
     {
         private readonly IApplicationDbContext context;
         private readonly IMapper mapper;

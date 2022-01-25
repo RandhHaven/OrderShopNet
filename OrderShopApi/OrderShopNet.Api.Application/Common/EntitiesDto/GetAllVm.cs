@@ -1,4 +1,4 @@
-﻿namespace OrderShopNet.Api.Domain.EntitiesDto;
+﻿namespace OrderShopNet.Api.Application.EntitiesDto;
 
 public sealed class GetAllVm
 {

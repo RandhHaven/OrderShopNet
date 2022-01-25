@@ -9,5 +9,4 @@ De la base a la
 
 add-migration MigrationsOrderShopInitial
 update-database
-
 Remove-Migration

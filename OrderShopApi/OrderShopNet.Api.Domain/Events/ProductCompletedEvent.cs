@@ -3,7 +3,7 @@
 using OrderShopNet.Api.Domain.Common;
 using OrderShopNet.Api.Domain.Entities;
 
-internal class ProductCompletedEvent : DomainEvent
+public class ProductCompletedEvent : DomainEvent
 {
     public ProductCompletedEvent(ProductDetail item)
     {

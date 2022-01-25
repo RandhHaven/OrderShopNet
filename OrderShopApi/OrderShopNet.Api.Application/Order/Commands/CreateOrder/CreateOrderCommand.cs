@@ -1,13 +1,12 @@
 ﻿using MediatR;
 using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Domain.Entities;
-using System;
 
 namespace OrderShopNet.Api.Application.Order.Commands.CreateOrder;
 
 public class CreateOrderCommand : IRequest<Guid?>
 {
-    public Int64 OrderShopId { get; set; }
+    public Guid? OrderShopId { get; set; }
 
     public String? Title { get; set; }
 
