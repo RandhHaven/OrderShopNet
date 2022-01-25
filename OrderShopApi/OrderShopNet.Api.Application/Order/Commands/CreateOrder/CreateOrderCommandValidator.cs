@@ -1,15 +1,14 @@
-﻿namespace OrderShopNet.Api.Application.Order.Commands.CreateOrder
-{
-    using FluentValidation;
+﻿namespace OrderShopNet.Api.Application.Order.Commands.CreateOrder;
+    
+using FluentValidation;
 
-    internal class CreateOrderCommandValidator : AbstractValidator<CreateOrderCommand>
+internal class CreateOrderCommandValidator : AbstractValidator<CreateOrderCommand>
+{
+    public CreateOrderCommandValidator()
     {
-        public CreateOrderCommandValidator()
-        {
-            RuleFor(x => x.Title).NotEmpty();
-            RuleFor(x => x.NumberOrder)
-                .NotEmpty()
-                .MaximumLength(100);
-        }
+        RuleFor(x => x.Title).NotEmpty();
+        RuleFor(x => x.NumberOrder)
+            .NotEmpty()
+            .MaximumLength(100);
     }
 }

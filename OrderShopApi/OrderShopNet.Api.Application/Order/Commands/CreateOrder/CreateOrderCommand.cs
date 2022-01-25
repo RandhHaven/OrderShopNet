@@ -4,7 +4,7 @@ using OrderShopNet.Api.Domain.Entities;
 
 namespace OrderShopNet.Api.Application.Order.Commands.CreateOrder;
 
-public class CreateOrderCommand : IRequest<Guid?>
+public sealed class CreateOrderCommand : IRequest<Guid?>
 {
     public Guid? OrderShopId { get; set; }
 
@@ -13,7 +13,7 @@ public class CreateOrderCommand : IRequest<Guid?>
     public String? NumberOrder { get; set; }
 }
 
-public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Guid?>
+public sealed class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Guid?>
 {
     private readonly IApplicationDbContext context;
 

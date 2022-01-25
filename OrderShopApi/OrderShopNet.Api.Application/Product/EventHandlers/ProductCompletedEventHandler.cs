@@ -6,7 +6,7 @@ using System;
 
 namespace OrderShopNet.Api.Application.Product.EventHandlers;
 
-internal sealed class ProductCompletedEventHandler : INotificationHandler<DomainEventNotification<ProductCompletedEvent>>
+public sealed class ProductCompletedEventHandler : INotificationHandler<DomainEventNotification<ProductCompletedEvent>>
 {
     private readonly ILogger<ProductCompletedEventHandler> logger;
 

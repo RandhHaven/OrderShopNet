@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
-using OrderShopNet.Api.Core.Product.Commands.CreateProduct;
 
-namespace OrderShopNet.Api.Application.Product.Commands.CreateProduct;
+namespace OrderShopNet.Api.Application.Product.Commands.UpdateProduct;
 
-public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+internal class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
 {
-    public CreateProductCommandValidator()
+    public UpdateProductCommandValidator()
     {
         RuleFor(x => x.NameProduct)
             .NotEmpty().WithMessage("Product Name not null")

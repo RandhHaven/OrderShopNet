@@ -9,7 +9,6 @@ public class UpdateOrderCommand : IRequest<Guid?>
 {
     public Guid OrderShopId { get; set; }
     public String? Title { get; set; }
-
     public String? NumberOrder { get; set; }
 }
 

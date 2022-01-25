@@ -1,21 +1,17 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace OrderShopNet.Api.Core.Order.Commands.UpdateOrder
+namespace OrderShopNet.Api.Core.Order.Commands.UpdateOrder;
+
+internal class UpdateOrderCommandValidator : AbstractValidator<UpdateOrderCommand>
 {
-    internal class UpdateOrderCommandValidator : AbstractValidator<UpdateOrderCommand>
+    public UpdateOrderCommandValidator()
     {
-        public UpdateOrderCommandValidator()
-        {
-            RuleFor(x => x.Title)
-                .NotEmpty();
-            RuleFor(x => x.NumberOrder)
-                .NotEmpty()
-                .MaximumLength(100);
-        }
+        RuleFor(x => x.OrderShopId)
+              .NotEmpty();
+        RuleFor(x => x.Title)
+            .NotEmpty();
+        RuleFor(x => x.NumberOrder)
+            .NotEmpty()
+            .MaximumLength(100);
     }
 }

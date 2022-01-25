@@ -9,6 +9,7 @@ namespace OrderShopNet.Api.Application.Product.Queries.GetAll;
 
 public sealed class GetProductByIdQuery : IRequest<ProductDetailDto>
 {
+    public Guid OrderShopId { get; set; }
     public Guid ProductId { get; set; }
 }
 
@@ -26,10 +27,10 @@ public sealed class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQ
     public async Task<ProductDetailDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
     {
         var entity = await this.context.Products
-               .FindAsync(new object[] { request.ProductId }, cancellationToken);
+               .FindAsync(new object[] { request.OrderShopId }, cancellationToken);
         if (Object.Equals(entity, null))
         {
-            throw new NotFoundException($"Error Get By Id Product: {nameof(ProductDetail)}, {request.ProductId}");
+            throw new NotFoundException($"Error Get By Id Product: {nameof(ProductDetail)}, {request.OrderShopId}");
         }
         var entityDto = this.mapper.Map<ProductDetailDto>(entity);
         return entityDto;
