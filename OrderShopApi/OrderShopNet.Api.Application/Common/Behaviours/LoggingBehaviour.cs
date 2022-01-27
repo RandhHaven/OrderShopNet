@@ -4,7 +4,7 @@ using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 using OrderShopNet.Api.Application.Common.Interfaces;
 
-internal class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
+public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
 {
     private readonly ILogger _logger;
     private readonly ICurrentUserService _currentUserService;

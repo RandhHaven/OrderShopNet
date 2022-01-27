@@ -10,3 +10,5 @@ De la base a la
 add-migration MigrationsOrderShopInitial
 update-database
 Remove-Migration
+
+https://charlascylon.com/2013-10-23-tutorial-mongodb-y-c-conexion-a-la-base-de-datos
