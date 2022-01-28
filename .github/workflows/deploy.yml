@@ -1,0 +1,28 @@
+name: Build Generation
+        
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: deploy to cluster
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+        
+      - name: build and pack
+        run: dotnet pack -c Release -o artifacts
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ github.repository }}
+          tag_with_ref: true
+          tag_with_sha: true
+          tags: ${{ github.sha }}
