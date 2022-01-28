@@ -13,7 +13,7 @@ public sealed class OrderShop : AuditableEntity
 
     public String? NumberOrder { get; set; }
 
-    public IList<ProductDetail> Items { get; private set; } = new List<ProductDetail>();
+    public IList<ProductDetail> Items { get; set; } = new List<ProductDetail>();
 
     public String? ProductOrderGuid { get; set; }
 }

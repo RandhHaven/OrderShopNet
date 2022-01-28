@@ -12,7 +12,7 @@ using OrderShopNet.Api.Infrastructure.Persistence;
 namespace OrderShopNet.Api.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220122201901_MigrationsOrderShopInitial")]
+    [Migration("20220128204924_MigrationsOrderShopInitial")]
     partial class MigrationsOrderShopInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

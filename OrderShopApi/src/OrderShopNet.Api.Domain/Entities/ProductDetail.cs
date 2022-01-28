@@ -2,6 +2,7 @@
 
 using OrderShopNet.Api.Domain.Common;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public sealed class ProductDetail : AuditableEntity, IHasDomainEvent
 {
@@ -15,9 +16,10 @@ public sealed class ProductDetail : AuditableEntity, IHasDomainEvent
 
     public Int32? Quantity { get; set; }
 
+    [ForeignKey("OrderShopId")]
     public Guid? OrderShopId { get; set; }
-        
-    public OrderShop? OrderShop { get; set; }
     
+    public OrderShop? OrderShop { get; set; }
+            
     public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
 }

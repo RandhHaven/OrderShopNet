@@ -25,13 +25,19 @@ public sealed class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderComma
         var entityDelete = await this.context.OrderShops
             .Where(x => x.OrderShopId == request.OrderShopId)
             .SingleOrDefaultAsync(cancellationToken);
-        
+
+        var entityDeleteProducts = await this.context.Products
+           .Where(x => x.OrderShopId == request.OrderShopId)
+           .SingleOrDefaultAsync(cancellationToken);
+
         if (Object.Equals(entityDelete, null))
         {
             throw new NotFoundException($"Error Delete Order {nameof(OrderShop) } - {request.OrderShopId}");
         }
 
         this.context.OrderShops.Remove(entityDelete);
+
+        this.context.Products.Remove(entityDeleteProducts);
 
         await this.context.SaveChangesAsync(cancellationToken);
 

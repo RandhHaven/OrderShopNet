@@ -5,6 +5,11 @@ using OrderShopNet.Api.Domain.Entities;
 
 public sealed class OrderShopDto : IMapFrom<OrderShop>
 {
+    public OrderShopDto()
+    {
+        Items = new List<ProductDetailDto>();
+    }
+
     public Guid? OrderShopId { get; set; }
 
     public String? Title { get; set; }

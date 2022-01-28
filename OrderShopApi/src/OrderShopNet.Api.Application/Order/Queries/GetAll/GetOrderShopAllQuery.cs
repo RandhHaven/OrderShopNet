@@ -23,13 +23,14 @@ namespace OrderShopNet.Api.Application.Order.Queries.GetAll
         }
 
         public async Task<GetAllVm> Handle(GetOrderShopAllQuery request, CancellationToken cancellationToken)
-        {
+        {            
             var listVm = new GetAllVm
             {               
                 Lists = await context.OrderShops
                 .AsNoTracking()
                 .ProjectTo<OrderShopDto>(mapper.ConfigurationProvider)
-                .OrderBy(t => t.Title)
+                
+                .OrderBy(t => t.Title)                
                 .ToListAsync(cancellationToken)
             };
             return listVm;

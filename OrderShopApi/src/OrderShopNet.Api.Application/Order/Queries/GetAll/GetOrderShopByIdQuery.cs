@@ -4,6 +4,8 @@ using OrderShopNet.Api.Application.Common.Exceptions;
 using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Domain.Entities;
 using OrderShopNet.Api.Application.EntitiesDto;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper.QueryableExtensions;
 
 namespace OrderShopNet.Api.Application.Order.Queries.GetAll
 {
@@ -25,11 +27,18 @@ namespace OrderShopNet.Api.Application.Order.Queries.GetAll
 
         public async Task<OrderShopDto> Handle(GetOrderShopByIdQuery request, CancellationToken cancellationToken)
         {
-            var entity = await this.context.OrderShops
-                .FindAsync(new object[] { request.OrderShopId }, cancellationToken);
-            if (Object.Equals(entity, null))
+            var listVm = new GetAllVm
             {
-                throw new NotFoundException($"Error Get By Id Order: {nameof(OrderShop)}, {request.OrderShopId}");
+                Lists = await context.OrderShops
+                   .AsNoTracking()
+                   .ProjectTo<OrderShopDto>(mapper.ConfigurationProvider)
+                   .OrderBy(t => t.Title)                    
+                   .ToListAsync(cancellationToken)
+            };
+            var entity = listVm.Lists.Where(t => t.OrderShopId == request.OrderShopId);
+            if (Object.Equals(entity, null) || !entity.Any())
+            {
+                throw new NotFoundException($"Error Get By Id Order: {nameof(OrderShopDto)}, {request.OrderShopId}");
             }
             var entityDto = this.mapper.Map<OrderShopDto>(entity);  
             return entityDto;
