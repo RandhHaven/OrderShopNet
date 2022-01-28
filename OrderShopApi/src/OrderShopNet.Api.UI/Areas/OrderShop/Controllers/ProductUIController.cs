@@ -3,7 +3,7 @@ using OrderShopNet.Api.Application.Product.Queries.GetAll;
 using OrderShopNet.Api.Application.EntitiesDto;
 using OrderShopNet.Api.UI.SharedController;
 using OrderShopNet.Api.Application.Product.Commands.DeleteProduct;
-using OrderShopNet.Api.Core.Product.Commands.CreateProduct;
+using OrderShopNet.Api.Application.Product.Commands.CreateProduct;
 using OrderShopNet.Api.Application.Product.Commands.UpdateProduct;
 
 namespace OrderShopNet.Api.UI.Areas.OrderShop.Controllers

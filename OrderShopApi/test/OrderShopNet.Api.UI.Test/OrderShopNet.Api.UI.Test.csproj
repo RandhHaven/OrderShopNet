@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\OrderShopNet.Api.Domain\OrderShopNet.Api.Domain.csproj" />
+    <ProjectReference Include="..\..\src\OrderShopNet.Api.UI\OrderShopNet.Api.UI.csproj" />
   </ItemGroup>
 
 </Project>

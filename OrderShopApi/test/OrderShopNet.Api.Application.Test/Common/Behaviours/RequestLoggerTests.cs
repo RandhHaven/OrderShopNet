@@ -5,7 +5,7 @@ using Moq;
 using NUnit.Framework;
 using OrderShopNet.Api.Application.Common.Behaviours;
 using OrderShopNet.Api.Application.Common.Interfaces;
-using OrderShopNet.Api.Core.Product.Commands.CreateProduct;
+using OrderShopNet.Api.Application.Product.Commands.CreateProduct;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using OrderShopNet.Api.Core.Product.Commands.CreateProduct;
 
 namespace OrderShopNet.Api.Application.Product.Commands.CreateProduct;
 

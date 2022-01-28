@@ -2,7 +2,7 @@
 using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Domain.Entities;
 
-namespace OrderShopNet.Api.Core.Product.Commands.CreateProduct;
+namespace OrderShopNet.Api.Application.Product.Commands.CreateProduct;
 
 public class CreateProductCommand : IRequest<Guid?>
 {
