@@ -50,9 +50,9 @@ namespace OrderShop.Api.UI
             services.Configure<ApiBehaviorOptions>(options =>
                 options.SuppressModelStateInvalidFilter = true);
 
-            // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-                configuration.RootPath = "ClientApp/dist");
+            //// In production, the Angular files will be served from this directory
+            //services.AddSpaStaticFiles(configuration =>
+            //    configuration.RootPath = "ClientApp/dist");
 
             //services.AddOpenApiDocument(configure =>
             //{

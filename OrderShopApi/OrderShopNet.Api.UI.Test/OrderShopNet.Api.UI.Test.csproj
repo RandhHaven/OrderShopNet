@@ -18,8 +18,4 @@
     <ProjectReference Include="..\OrderShopNet.Api.UI\OrderShopNet.Api.UI.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
 </Project>

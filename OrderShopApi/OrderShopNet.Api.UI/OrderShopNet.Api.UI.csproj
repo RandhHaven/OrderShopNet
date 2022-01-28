@@ -23,5 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OrderShopNet.Api.Infrastructure\OrderShopNet.Api.Infrastructure.csproj" />
   </ItemGroup>
-
+  <PropertyGroup>
+	<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
 </Project>
