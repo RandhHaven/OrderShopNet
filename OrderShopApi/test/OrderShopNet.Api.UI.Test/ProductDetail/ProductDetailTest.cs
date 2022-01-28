@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderShopNet.Api.UI.Test
+namespace OrderShopNet.Api.UI.Test.ProductDetail
 {
-    internal class BaseTest
+    internal class ProductDetailTest
     {
     }
 }
