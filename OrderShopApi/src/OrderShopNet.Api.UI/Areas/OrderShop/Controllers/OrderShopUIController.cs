@@ -40,7 +40,7 @@ public class OrderShopUIController : ApiControllerBase
         return NoContent();
     }
 
-    [HttpPost("{id}")]
+    [HttpPost]
     public async Task<ActionResult<Guid>> Create(CreateOrderCommand command)
     {
         return await Mediator.Send(command);
