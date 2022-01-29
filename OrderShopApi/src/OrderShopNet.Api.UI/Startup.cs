@@ -6,6 +6,7 @@ using OrderShopNet.Api.Application;
 using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Infrastructure;
 using OrderShopNet.Api.Infrastructure.Persistence;
+using Microsoft.OpenApi.Models;
 
 namespace OrderShop.Api.UI
 {
@@ -44,29 +45,45 @@ namespace OrderShop.Api.UI
                 options.Filters.Add<ApiExceptionFilterAttribute>())
                     .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
 
+            services.AddSwaggerGen(swaggerConfiguration =>
+            {
+                swaggerConfiguration.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Core API",
+                    Description = "Core API - OrderShopApi",
+                });
+
+                swaggerConfiguration.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Bearere <access-token>",
+                });
+
+                swaggerConfiguration.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+            });
+
             services.AddRazorPages();
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>
-                options.SuppressModelStateInvalidFilter = true);
-
-            //// In production, the Angular files will be served from this directory
-            //services.AddSpaStaticFiles(configuration =>
-            //    configuration.RootPath = "ClientApp/dist");
-
-            //services.AddOpenApiDocument(configure =>
-            //{
-            //    configure.Title = "CleanArchitecture API";
-            //    configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
-            //    {
-            //        Type = OpenApiSecuritySchemeType.ApiKey,
-            //        Name = "Authorization",
-            //        In = OpenApiSecurityApiKeyLocation.Header,
-            //        Description = "Type into the textbox: Bearer {your JWT token}."
-            //    });
-
-            //    configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
-            //});
+                options.SuppressModelStateInvalidFilter = true);                        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -94,7 +111,6 @@ namespace OrderShop.Api.UI
 
             app.UseRouting();
             app.UseAuthentication();
-            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Application.Common.Models;
+using OrderShopNet.Api.Domain.Common;
 
 namespace OrderShopNet.Api.Infrastructure.Identity
 {
@@ -40,6 +41,30 @@ namespace OrderShopNet.Api.Infrastructure.Identity
             var result = await _userManager.CreateAsync(user, password);
 
             return (result.ToApplicationResult(), user.Id);
+        }
+
+        public async Task<UserResult> AuthenticateAsync(string email, string password)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user is null)
+                throw new UnauthorizedAccessException("Credenciales incorrectas");
+
+            var isLockedOut = await _userManager.IsLockedOutAsync(user);
+            if (isLockedOut)
+                throw new UnauthorizedAccessException("Su usuario se encuentra bloqueado");
+
+            var isCorrectPassword = await _userManager.CheckPasswordAsync(user, password);
+            if (!isCorrectPassword)
+                throw new UnauthorizedAccessException("Credenciales incorrectas");
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            
+            return new UserResult
+            {
+                UserId = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+            };
         }
 
         public async Task<bool> IsInRoleAsync(string userId, string role)
