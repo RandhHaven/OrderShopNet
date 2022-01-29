@@ -33,7 +33,6 @@ public class CreateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, Gui
 
         entity.Title = request.Title;
         entity.NumberOrder = request.NumberOrder;
-        this.context.OrderShops.Add(entity);
 
         await this.context.SaveChangesAsync(cancellationToken);
 

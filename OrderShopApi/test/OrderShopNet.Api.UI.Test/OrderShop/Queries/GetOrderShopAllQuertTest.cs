@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderShopNet.Api.UI.Test.NewFolder
+namespace OrderShopNet.Api.UI.Test.OrderShop.Queries
 {
-    internal class OrderShopTest
+    internal class GetOrderShopAllQuertTest
     {
     }
 }
