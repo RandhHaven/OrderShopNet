@@ -1,0 +1,21 @@
+{
+  "title": "test_vendo",
+  "numberOrder": "340",
+  "items": [
+    {
+      "nameProduct": "product test",
+      "description": "product description",
+      "quantity": 50
+    },
+	{
+      "nameProduct": "product test v1",
+      "description": "product description v1",
+      "quantity": 60
+    }
+  ]
+}
+
+{
+  "email": "randhall@gmail.com",
+  "password": "Randhall123#"
+}
