@@ -6,7 +6,7 @@ using OrderShopNet.Api.Application.Common.Mappings;
 using OrderShopNet.Api.Application.Models;
 using OrderShopNet.Api.Application.EntitiesDto;
 
-namespace OrderShopNet.Api.Core.Order.Queries.GetWithPagination;
+namespace OrderShopNet.Api.Application.Order.Queries.GetWithPagination;
 
 public class GetOrderShopWithPagination : IRequest<PaginatedList<OrderShopDto>>
 {

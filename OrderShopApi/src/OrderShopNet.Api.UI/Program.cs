@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using OrderShop.Api.UI;
 using OrderShopNet.Api.Infrastructure.Identity;
 using OrderShopNet.Api.Infrastructure.Persistence;
+using OrderShopNet.Api.UI;
 
 public class Program
 {

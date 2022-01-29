@@ -3,7 +3,7 @@ using OrderShopNet.Api.Application.Common.Exceptions;
 using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Domain.Entities;
 
-namespace OrderShopNet.Api.Core.Order.Commands.UpdateOrder;
+namespace OrderShopNet.Api.Application.Order.Commands.UpdateOrder;
 
 public class UpdateOrderCommand : IRequest<Guid?>
 {

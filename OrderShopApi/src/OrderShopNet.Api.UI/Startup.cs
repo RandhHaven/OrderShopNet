@@ -8,7 +8,7 @@ using OrderShopNet.Api.Infrastructure;
 using OrderShopNet.Api.Infrastructure.Persistence;
 using Microsoft.OpenApi.Models;
 
-namespace OrderShop.Api.UI
+namespace OrderShopNet.Api.UI
 {
     public class Startup
     {
@@ -117,7 +117,7 @@ namespace OrderShop.Api.UI
             {
                 endpoints.MapControllerRoute(
                    name: "default",
-                   pattern: "{area=OrderShop}/{controller=OrderShopUI}/{action=Get}/{id?}");
+                   pattern: "{area=Order}/{controller=OrderShopUI}/{action=Get}/{id?}");
             });
         }
     }

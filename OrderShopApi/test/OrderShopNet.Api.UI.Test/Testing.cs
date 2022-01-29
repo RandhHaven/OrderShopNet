@@ -1,36 +1,176 @@
-namespace OrderShopNet.Api.UI.Test
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
+using OrderShopNet.Api.Infrastructure.Persistence;
+using Respawn;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Moq;
+using OrderShopNet.Api.Application.Common.Interfaces;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using OrderShopNet.Api.Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
+using System;
+
+namespace OrderShopNet.Api.UI.Test;
+[SetUpFixture]
+public class Testing
 {
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using NUnit.Framework;
-    using OrderShopNet.Api.Infrastructure.Persistence;
-    using Respawn;
-    using System.Threading.Tasks;
+    private static IConfigurationRoot _configuration = null!;
+    private static Checkpoint _checkpoint = null!;
+    private static string? _currentUserId;
+    private static IServiceScopeFactory _scopeFactory = null!;
 
-    [SetUpFixture]
-    public class Testing
+    [OneTimeSetUp]
+    public void RunBeforeAnyTests()
     {
-        private static IConfigurationRoot _configuration = null!;
-        private static Checkpoint _checkpoint = null!;
-        private static string? _currentUserId;
-        private static IServiceScopeFactory _scopeFactory = null!;
+        var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", true, true)
+            .AddEnvironmentVariables();
 
+        _configuration = builder.Build();
 
-        public static async Task<TEntity?> FindAsync<TEntity>(params object[] keyValues)
+        var startup = new Startup(_configuration);
+
+        var services = new ServiceCollection();
+
+        services.AddSingleton(Mock.Of<IWebHostEnvironment>(w =>
+            w.EnvironmentName == "Development" &&
+            w.ApplicationName == "OrderShopNet.Api.UI"));
+
+        services.AddLogging();
+
+        startup.ConfigureServices(services);
+
+        // Replace service registration for ICurrentUserService
+        // Remove existing registration
+        var currentUserServiceDescriptor = services.FirstOrDefault(d =>
+            d.ServiceType == typeof(ICurrentUserService));
+
+        if (currentUserServiceDescriptor != null)
+        {
+            services.Remove(currentUserServiceDescriptor);
+        }
+
+        // Register testing version
+        services.AddTransient(provider =>
+            Mock.Of<ICurrentUserService>(s => s.UserId == _currentUserId));
+
+        _scopeFactory = services.BuildServiceProvider().GetRequiredService<IServiceScopeFactory>();
+
+        _checkpoint = new Checkpoint
+        {
+            TablesToIgnore = new[] { "__EFMigrationsHistory" }
+        };
+
+        EnsureDatabase();
+    }
+
+    private static void EnsureDatabase()
+    {
+        using var scope = _scopeFactory.CreateScope();
+
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        context.Database.Migrate();
+    }
+
+    public static async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request)
+    {
+        using var scope = _scopeFactory.CreateScope();
+
+        var mediator = scope.ServiceProvider.GetRequiredService<ISender>();
+
+        return await mediator.Send(request);
+    }
+
+    public static async Task<string> RunAsDefaultUserAsync()
+    {
+        return await RunAsUserAsync("test@local", "Testing1234!", Array.Empty<string>());
+    }
+
+    public static async Task<string> RunAsAdministratorAsync()
+    {
+        return await RunAsUserAsync("administrator@local", "Administrator1234!", new[] { "Administrator" });
+    }
+
+    public static async Task<string> RunAsUserAsync(string userName, string password, string[] roles)
+    {
+        using var scope = _scopeFactory.CreateScope();
+
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+        var user = new ApplicationUser { UserName = userName, Email = userName };
+
+        var result = await userManager.CreateAsync(user, password);
+
+        if (roles.Any())
+        {
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            foreach (var role in roles)
+            {
+                await roleManager.CreateAsync(new IdentityRole(role));
+            }
+
+            await userManager.AddToRolesAsync(user, roles);
+        }
+
+        if (result.Succeeded)
+        {
+            _currentUserId = user.Id;
+
+            return _currentUserId;
+        }
+
+        var errors = string.Join(Environment.NewLine, result.ToApplicationResult().Errors);
+
+        throw new Exception($"Unable to create {userName}.{Environment.NewLine}{errors}");
+    }
+
+    public static async Task<TEntity?> FindAsync<TEntity>(params object[] keyValues)
+    where TEntity : class
+    {
+        using var scope = _scopeFactory.CreateScope();
+
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        return await context.FindAsync<TEntity>(keyValues);
+    }
+
+    public static async Task ResetState()
+    {
+        await _checkpoint.Reset(_configuration.GetConnectionString("AppConnection"));
+        _currentUserId = null;
+    }
+
+    public static async Task AddAsync<TEntity>(TEntity entity)
         where TEntity : class
-        {
-            using var scope = _scopeFactory.CreateScope();
+    {
+        using var scope = _scopeFactory.CreateScope();
 
-            var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-            return await context.FindAsync<TEntity>(keyValues);
-        }
+        context.Add(entity);
 
-        public static async Task ResetState()
-        {
-            await _checkpoint.Reset(_configuration.GetConnectionString("AppConnection"));
-            _currentUserId = null;
-        }
+        await context.SaveChangesAsync();
+    }
 
+    public static async Task<int> CountAsync<TEntity>() where TEntity : class
+    {
+        using var scope = _scopeFactory.CreateScope();
+
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        return await context.Set<TEntity>().CountAsync();
+    }
+
+    [OneTimeTearDown]
+    public void RunAfterAnyTests()
+    {
     }
 }

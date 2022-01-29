@@ -1,7 +1,6 @@
 ﻿namespace OrderShopNet.Api.Application.Order.Queries.GetWithPagination
 {
     using FluentValidation;
-    using OrderShopNet.Api.Core.Order.Queries.GetWithPagination;
 
     internal class GetOrderShopWithPaginationValidator : AbstractValidator<GetOrderShopWithPagination>
     {

@@ -1,17 +1,17 @@
-﻿namespace OrderShopNet.Api.UI.Areas.OrderShop.Controllers;
+﻿namespace OrderShopNet.Api.UI.Areas.Order.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
 using OrderShopNet.Api.Application.Models;
 using OrderShopNet.Api.Application.Order.Commands.CreateOrder;
 using OrderShopNet.Api.Application.Order.Queries.GetAll;
-using OrderShopNet.Api.Core.Order.Commands.DeleteOrder;
-using OrderShopNet.Api.Core.Order.Commands.UpdateOrder;
-using OrderShopNet.Api.Core.Order.Queries.GetWithPagination;
+using OrderShopNet.Api.Application.Order.Commands.DeleteOrder;
 using OrderShopNet.Api.Application.EntitiesDto;
 using OrderShopNet.Api.UI.SharedController;
+using OrderShopNet.Api.Application.Order.Commands.UpdateOrder;
+using OrderShopNet.Api.Application.Order.Queries.GetWithPagination;
 
 [ApiController]
-[Area("OrderShop")]
+[Area("Order")]
 public class OrderShopUIController : ApiControllerBase
 {
     [HttpGet]

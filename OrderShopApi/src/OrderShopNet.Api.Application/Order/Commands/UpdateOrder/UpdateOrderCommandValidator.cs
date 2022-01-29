@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace OrderShopNet.Api.Core.Order.Commands.UpdateOrder;
+namespace OrderShopNet.Api.Application.Order.Commands.UpdateOrder;
 
 internal class UpdateOrderCommandValidator : AbstractValidator<UpdateOrderCommand>
 {

@@ -1,10 +1,10 @@
-﻿using MediatR;
+﻿namespace OrderShopNet.Api.Application.Order.Commands.DeleteOrder;
+
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using OrderShopNet.Api.Application.Common.Exceptions;
 using OrderShopNet.Api.Application.Common.Interfaces;
 using OrderShopNet.Api.Domain.Entities;
-
-namespace OrderShopNet.Api.Core.Order.Commands.DeleteOrder;
 
 public sealed class DeleteOrderCommand : IRequest
 {
