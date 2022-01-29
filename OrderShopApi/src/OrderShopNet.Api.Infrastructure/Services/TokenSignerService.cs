@@ -1,53 +1,49 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using OrderShopNet.Api.Domain.Common;
-using OrderShopNet.Api.Domain.Users.Services;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-
-namespace OrderShopNet.Api.Infrastructure.Services
+﻿namespace OrderShopNet.Api.Infrastructure.Services
 {
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.IdentityModel.Tokens;
+    using OrderShopNet.Api.Domain.Common;
+    using OrderShopNet.Api.Domain.Users.Services;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Security.Claims;
+    using System.Text;
+
     public class TokenSignerService : ITokenSignerService
     {
+        private readonly IConfiguration configuration;
+
+        public TokenSignerService(IConfiguration _configuration)
+        {
+            this.configuration = _configuration ?? throw new ArgumentNullException(nameof(_configuration));
+        }
+
         public string SignToken(UserResult user)
         {
-            //var jwtSecret = configuration.Get<string>("ELASTICSEARCH_PORT");
-            //var issuer = Environment.GetEnvironmentVariable(EnvironmentVariablesConstants.JWT_ISSUER);
-            //var audience = Environment.GetEnvironmentVariable(EnvironmentVariablesConstants.JWT_AUDIENCE);
-            //var expiresIn = Environment.GetEnvironmentVariable(EnvironmentVariablesConstants.JWT_EXPIRES_IN);
+            var jwtSecret = this.configuration["JWT_SERCRET"];
+            var issuer = this.configuration["JWT_ISSUER"];
+            var audience = this.configuration["JWT_AUDIENCE"];
+            var expiresIn = int.Parse(this.configuration["JWT_EXPIRES_IN"]);
 
-            try
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret));
+            var jwtExpirationInMinutes = expiresIn;
+
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.UserId));
+            claims.Add(new Claim(ClaimTypes.Email, user.Email));
+            claims.Add(new Claim(ClaimTypes.Name, user.UserName ?? ""));
+
+            var securityTokenDescriptor = new SecurityTokenDescriptor
             {
-                var jwtSecret = "/B?D(G+KbPeShVmYq3t6w9z$C&F)H@McQfTjWnZr4u7x!A%D*G-KaNdRgUkXp2s5";
-                var issuer = "ordershop_issuer";
-                var audience = "ordershop_udience";
-                var expiresIn = 86400;
+                Issuer = issuer,
+                Audience = audience,
+                Expires = DateTime.UtcNow.AddSeconds(jwtExpirationInMinutes),
+                Subject = new ClaimsIdentity(claims),
+                SigningCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature)
+            };
 
-                var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret));
-                var jwtExpirationInMinutes = expiresIn;
-
-                var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.UserId));
-                claims.Add(new Claim(ClaimTypes.Email, user.Email));
-                claims.Add(new Claim(ClaimTypes.Name, user.UserName ?? ""));
-
-                var securityTokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Issuer = issuer,
-                    Audience = audience,
-                    Expires = DateTime.UtcNow.AddSeconds(jwtExpirationInMinutes),
-                    Subject = new ClaimsIdentity(claims),
-                    SigningCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature)
-                };
-
-                var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
-                var securityToken = jwtSecurityTokenHandler.CreateToken(securityTokenDescriptor);
-                return jwtSecurityTokenHandler.WriteToken(securityToken);
-            }
-            catch (Exception ex)
-            {
-                return "";
-            }
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = jwtSecurityTokenHandler.CreateToken(securityTokenDescriptor);
+            return jwtSecurityTokenHandler.WriteToken(securityToken);
         }
     }
 }
