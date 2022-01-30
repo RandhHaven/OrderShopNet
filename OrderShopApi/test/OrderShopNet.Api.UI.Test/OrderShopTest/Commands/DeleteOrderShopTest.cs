@@ -21,12 +21,12 @@ public class DeleteOrderShopTest : TestBase
     }
 
     [Test]
-    public async Task ShouldDeleteTodoList()
+    public async Task ShouldDeleteOrderShop()
     {
         var orderShopId = await SendAsync(new CreateOrderCommand
         {
-            Title = "New List",
-            NumberOrder = "Number Order"
+            Title = "New Tittle Order",
+            NumberOrder = "New Number Order"
         });
 
         await SendAsync(new DeleteOrderCommand

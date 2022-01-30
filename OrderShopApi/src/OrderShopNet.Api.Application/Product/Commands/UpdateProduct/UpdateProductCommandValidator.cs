@@ -1,6 +1,6 @@
-﻿using FluentValidation;
+﻿namespace OrderShopNet.Api.Application.Product.Commands.UpdateProduct;
 
-namespace OrderShopNet.Api.Application.Product.Commands.UpdateProduct;
+using FluentValidation;
 
 internal class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
 {
@@ -10,7 +10,7 @@ internal class UpdateProductCommandValidator : AbstractValidator<UpdateProductCo
             .NotEmpty().WithMessage("Product Name not null")
             .MaximumLength(100);
         RuleFor(x => x.Description)
-            .NotEmpty().WithMessage("Descriptionnot null")
+            .NotEmpty().WithMessage("Description not null")
             .MaximumLength(100);
         RuleFor(x => x.Quantity)
             .NotNull();

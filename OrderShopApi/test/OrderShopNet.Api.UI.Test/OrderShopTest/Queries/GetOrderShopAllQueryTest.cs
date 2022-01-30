@@ -9,14 +9,15 @@ namespace OrderShopNet.Api.UI.Test.OrderShopTest.Queries;
 
 using static Testing;
 
-internal class GetOrderShopAllQueryTest
+internal class GetOrderShopAllQueryTest : TestBase
 {
     [Test]
-    public async Task ShouldReturnAllListsAndItems()
+    public async Task ShouldReturnAllListsOrderShops()
     {
         await AddAsync(new OrderShop
         {
             Title = "Shopping",
+            NumberOrder = "K20",
             Items =
                     {
                         new ProductDetail { NameProduct= "First Product ", Description = "First Description", Quantity = 10 },
@@ -32,6 +33,6 @@ internal class GetOrderShopAllQueryTest
         var result = await SendAsync(query);
 
         result.Lists.Should().HaveCount(1);
-        result.Lists.First().Items.Should().HaveCount(7);
+        result.Lists.First().Items.Should().HaveCount(5);
     }
 }

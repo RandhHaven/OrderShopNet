@@ -15,14 +15,14 @@ using static Testing;
 internal class UpdateOrderShopTest : TestBase
 {
     [Test]
-    public async Task ShouldRequireValidTodoItemId()
+    public async Task ShouldRequireValidOrderShopId()
     {
         var command = new UpdateOrderCommand { OrderShopId = Guid.NewGuid(), Title = "New Title", NumberOrder = "new Number Order" };
         await FluentActions.Invoking(() => SendAsync(command)).Should().ThrowAsync<NotFoundException>();
     }
 
     [Test]
-    public async Task ShouldUpdateTodoItem()
+    public async Task ShouldUpdateOrderShop()
     {
         var userId = await RunAsDefaultUserAsync();
 
@@ -30,12 +30,6 @@ internal class UpdateOrderShopTest : TestBase
         {
             Title = "New Tittle Order Shop",
             NumberOrder = "New Number Order",
-        });
-
-        var itemId = await SendAsync(new CreateOrderCommand
-        {
-            NumberOrder = "New Number Order",
-            Title = "New Item",
             Items =
                     {
                         new ProductDetailDto { NameProduct= "First Product ", Description = "First Description", Quantity = 10 },
@@ -44,7 +38,12 @@ internal class UpdateOrderShopTest : TestBase
                         new ProductDetailDto { NameProduct= "Fourth Product", Description = "Fourth Product", Quantity = 40 },
                         new ProductDetailDto { NameProduct= "Fifth Product", Description = "Fifth Product", Quantity = 50 }
             }
+        });
 
+        var itemId = await SendAsync(new CreateOrderCommand
+        {
+            Title = "New Tittle Order Shop",
+            NumberOrder = "New Number Order"
         });
 
         var command = new UpdateOrderCommand
@@ -60,6 +59,7 @@ internal class UpdateOrderShopTest : TestBase
 
         item.Should().NotBeNull();
         item!.Title.Should().Be(command.Title);
+        item!.NumberOrder.Should().Be(command.NumberOrder);
         item.LastModifiedBy.Should().NotBeNull();
         item.LastModifiedBy.Should().Be(userId);
         item.LastModified.Should().NotBeNull();

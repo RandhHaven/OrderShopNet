@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 
 namespace OrderShopNet.Api.UI.Test;
+
 [SetUpFixture]
 public class Testing
 {
