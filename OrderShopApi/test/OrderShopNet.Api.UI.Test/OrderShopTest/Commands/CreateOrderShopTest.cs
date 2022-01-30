@@ -1,14 +1,13 @@
-﻿using FluentAssertions;
-using FluentValidation;
+﻿namespace OrderShopNet.Api.UI.Test.OrderShopTest.Commands;
+
+using FluentAssertions;
 using NUnit.Framework;
+using OrderShopNet.Api.Application.Common.Exceptions;
 using OrderShopNet.Api.Application.EntitiesDto;
 using OrderShopNet.Api.Application.Order.Commands.CreateOrder;
 using OrderShopNet.Api.Domain.Entities;
 using System;
 using System.Threading.Tasks;
-
-namespace OrderShopNet.Api.UI.Test.OrderShopTest.Commands;
-
 using static Testing;
 
 internal class CreateOrderShopTest : TestBase
@@ -21,7 +20,7 @@ internal class CreateOrderShopTest : TestBase
     }
 
     [Test]
-    public async Task ShouldRequireUniqueTitle()
+    public async Task ShouldRequireUniqueValue()
     {
         await SendAsync(new CreateOrderCommand
         {

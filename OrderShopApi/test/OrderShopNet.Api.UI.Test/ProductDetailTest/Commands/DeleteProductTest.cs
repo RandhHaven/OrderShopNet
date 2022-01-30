@@ -21,7 +21,7 @@ internal class DeleteProductTest : TestBase
     }
 
     [Test]
-    public async Task ShouldDeleteOrderShop()
+    public async Task ShouldDeleteProduct()
     {
         var productId = await SendAsync(new CreateProductCommand
         {

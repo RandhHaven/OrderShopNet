@@ -1,5 +1,4 @@
-﻿
-namespace OrderShopNet.Api.UI.Test.ProductDetailTest.Commands;
+﻿namespace OrderShopNet.Api.UI.Test.ProductDetailTest.Commands;
 
 using FluentAssertions;
 using NUnit.Framework;

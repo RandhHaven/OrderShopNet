@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using FluentValidation;
+using OrderShopNet.Api.Application.Common.Exceptions;
 using NUnit.Framework;
 using OrderShopNet.Api.Application.Product.Commands.CreateProduct;
 using OrderShopNet.Api.Domain.Entities;
@@ -20,7 +20,7 @@ internal class CreateProductTest
     }
 
     [Test]
-    public async Task ShouldRequireUniqueTitle()
+    public async Task ShouldRequireUniqueValue()
     {
         await SendAsync(new CreateProductCommand
         {
@@ -44,7 +44,7 @@ internal class CreateProductTest
     }
 
     [Test]
-    public async Task ShouldCreateTodoList()
+    public async Task ShouldCreateProduct()
     {
         var userId = await RunAsDefaultUserAsync();
 

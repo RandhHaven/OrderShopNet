@@ -1,12 +1,11 @@
-﻿using FluentAssertions;
+﻿namespace OrderShopNet.Api.UI.Test.OrderShopTest.Queries;
+
+using FluentAssertions;
 using NUnit.Framework;
 using OrderShopNet.Api.Application.Order.Queries.GetAll;
 using System.Linq;
 using System.Threading.Tasks;
 using OrderShopNet.Api.Domain.Entities;
-
-namespace OrderShopNet.Api.UI.Test.OrderShopTest.Queries;
-
 using static Testing;
 
 internal class GetOrderShopAllQueryTest : TestBase
